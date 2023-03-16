@@ -1,0 +1,36 @@
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.csproj.AssemblyReference.cache
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club_MarkupCompile.cache
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club_MarkupCompile.lref
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Fight Club.exe
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Fight Club.deps.json
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Fight Club.runtimeconfig.json
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Fight Club.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Fight Club.pdb
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\ControlzEx.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\FontAwesome.WPF.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MahApps.Metro.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MahApps.Metro.IconPacks.Core.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MahApps.Metro.IconPacks.Material.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\MaterialDesignThemes.MahApps.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\timur\source\repos\Fight Club\bin\Debug\net6.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\App.baml
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.g.resources
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.AssemblyInfoInputs.cache
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.AssemblyInfo.cs
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.csproj.CoreCompileInputs.cache
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.csproj.CopyComplete
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.dll
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\refint\Fight Club.dll
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.pdb
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.genruntimeconfig.cache
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\ref\Fight Club.dll
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.g.cs
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.baml

@@ -1,0 +1,45 @@
+﻿<Window x:Class="Fight_Club.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fight_Club" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="700" Width="1000">
+
+    <Grid>
+
+        <Rectangle>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="https://wallup.net/wp-content/uploads/2016/01/62554-abstract-dark-748x468.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Border MinWidth="400" MaxWidth="500" Margin="15" Background="#292b2e" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="#313b35" ShadowDepth="0"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="FIGHT CLUB" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Margin="0 20 0 0" Text="Exclusive society for men seeking" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBlock Text="to break societal constraints violently" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBox x:Name="nicknameBox" FontSize="20" Foreground="White" materialDesign:HintAssist.Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:HintAssist.Hint="Nickname" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Label x:Name="error1" Content="" Foreground="Red"/>
+                <PasswordBox x:Name="passwordBox" FontSize="20" Foreground="White" materialDesign:HintAssist.Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Label x:Name="error2" Content="" Foreground="Red"/>
+                <Grid Margin="0, 20, 0, 20">
+                    <Button Click="Button_Click" HorizontalAlignment="Left" Content="Sign up" Width="100" Background="#1f2120" BorderBrush="Black"/>
+                    <Button Click="Button_Click_1" HorizontalAlignment="Right" Content="Log in" Width="100" Background="#1f2120" BorderBrush="Black"/>
+                </Grid>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+
+</Window>
