@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Markup;
+﻿// RECHANGE 1
+
+using MahApps.Metro.Markup;
 using Microsoft.Win32;
 using System.Text.Json;
 using System;

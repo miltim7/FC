@@ -220,8 +220,8 @@
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
-                <Border Margin="20" Background="Aqua" CornerRadius="50">
+            <Grid Visibility="Hidden" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
+                <Border Margin="20" Background="Transparent" CornerRadius="50">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -233,14 +233,17 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Border Margin="15" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top">
+                        <Border CornerRadius="300" Margin="10" Background="White">
+                            <Image x:Name="ImageControl"/>
+                        </Border>
+                        
+                        <Border Margin="15" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top">
                             <StackPanel>
-                                <Image Source="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"/>
                                 <Border CornerRadius="20" Background="#8403fc">
-                                    <Button x:Name="uploadPhoto" Content="Upload a photo" Background="Transparent" BorderBrush="Transparent"/>
+                                    <Button Click="uploadPhoto_Click" Content="Upload a photo" Background="Transparent" BorderBrush="Transparent"/>
                                 </Border>
-                                <Border CornerRadius="20" Background="White" Margin="0 10 0 0">
-                                    <TextBox Margin="8 0 8 5"/>
+                                <Border x:Name="borderUrlTextBox" Visibility="Visible" CornerRadius="20" Background="White" Margin="0 10 0 0">
+                                    <TextBox x:Name="UrlTextBox" Margin="8 0 8 5" TextChanged="UrlTextBox_TextChanged"/>
                                 </Border>
                             </StackPanel>
                         </Border>
@@ -250,21 +253,21 @@
                                 <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Top">
                                     <Grid>
                                         <Icon:PackIconMaterial Kind="Account" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
-                                        <TextBox FontSize="50" Margin="60 0 25 0" Foreground="White"/>
+                                        <TextBox IsReadOnly="True" x:Name="textBoxUserNameProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
                                     </Grid>
                                 </Border>
 
                                 <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Bottom">
                                     <Grid>
                                         <Icon:PackIconMaterial Kind="Key" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
-                                        <TextBox FontSize="50" Margin="60 0 25 0" Foreground="White"/>
+                                        <TextBox IsReadOnly="True" x:Name="textBoxUserPasswordProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
                                     </Grid>
                                 </Border>
                             </Grid>
                         </Border>
 
                         <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="25" CornerRadius="30" VerticalAlignment="Bottom" Background="#6400c2">
-                            <Button VerticalAlignment="Bottom" Margin="10" Content="Save Changes" Background="Transparent" BorderBrush="Transparent"/>
+                            <Button Click="SaveChanges_Click" VerticalAlignment="Bottom" Margin="10" Content="Save Changes" Background="Transparent" BorderBrush="Transparent"/>
                         </Border>
 
                         <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Transparent" Margin="20">
