@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Fight_Club;
 public partial class Window1
@@ -53,19 +54,22 @@ public partial class Window1
 
         string name = string.Empty;
         string rating = string.Empty;
-        string image = string.Empty;
-
+        string nowPhoto = string.Empty;
         foreach(var item in res)
         {
             if(item.Id == number.ToString())
             {
                 name = item.Nickname;
                 rating = "0";
-                image = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png";
+                nowPhoto = item.URL;
             }
         }
 
-        File.WriteAllText("images.txt", image);
+        if(string.IsNullOrWhiteSpace(nowPhoto))
+            nowPhoto = defaultImage;
+        var bitmap = new BitmapImage(new Uri(nowPhoto));
+        imageInProp.Fill = new ImageBrush(bitmap);
+
         ratingPoint.Text = rating;
         nameInProp.Text = name;
         BorderWithoutId.Visibility = Visibility.Visible;

@@ -28,7 +28,7 @@ namespace Fight_Club
             var read = File.ReadAllText(path);
             var list = JsonConvert.DeserializeObject<List<User>>(read);
             foreach(var item in list)
-            {
+            { 
                 int length = item.Password.Length;
                 item.Password = "";
                 for(int i = 0; i < length; i++)

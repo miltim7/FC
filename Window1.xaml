@@ -188,7 +188,7 @@
                                     </Grid.RowDefinitions>
 
                                     <Border  Grid.Row="0" Grid.Column="0" CornerRadius="100">
-                                        <Image x:Name="imageInProp" Source="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"/>
+                                        <Ellipse x:Name="imageInProp"/>
                                     </Border>
 
                                     <Border Grid.Row="0" Grid.Column="1" CornerRadius="20" Background="Transparent" Margin="10">
@@ -220,7 +220,7 @@
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Visibility="Hidden" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
+            <Grid Visibility="Visible" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
                 <Border Margin="20" Background="Transparent" CornerRadius="50">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -233,9 +233,9 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Border CornerRadius="300" Margin="10" Background="White">
-                            <Image x:Name="ImageControl"/>
-                        </Border>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Ellipse x:Name="PhotoEllipse" Margin="15 5 15 5"/>
+                        </Grid>
                         
                         <Border Margin="15" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top">
                             <StackPanel>
@@ -243,7 +243,7 @@
                                     <Button Click="uploadPhoto_Click" Content="Upload a photo" Background="Transparent" BorderBrush="Transparent"/>
                                 </Border>
                                 <Border x:Name="borderUrlTextBox" Visibility="Visible" CornerRadius="20" Background="White" Margin="0 10 0 0">
-                                    <TextBox x:Name="UrlTextBox" Margin="8 0 8 5" TextChanged="UrlTextBox_TextChanged"/>
+                                    <TextBox x:Name="UrlTextBox" TextChanged="UrlTextBox_TextChanged" Margin="8 0 8 5"/>
                                 </Border>
                             </StackPanel>
                         </Border>
@@ -267,7 +267,7 @@
                         </Border>
 
                         <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="25" CornerRadius="30" VerticalAlignment="Bottom" Background="#6400c2">
-                            <Button Click="SaveChanges_Click" VerticalAlignment="Bottom" Margin="10" Content="Save Changes" Background="Transparent" BorderBrush="Transparent"/>
+                            <Button x:Name="saveChanges" Click="SaveChanges_Click" VerticalAlignment="Bottom" Margin="10" Content="Save Changes" Background="Transparent" BorderBrush="Transparent"/>
                         </Border>
 
                         <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Transparent" Margin="20">

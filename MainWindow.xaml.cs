@@ -33,12 +33,14 @@ class User
     public string Nickname { get; set; }
     public string Password { get; set; }
     public string Rating { get; set; }
-    public User(string nickname, string password, string id)
+    public string URL { get; set; }
+    public User(string nickname, string password, string id, string url)
     {
 
         Nickname = nickname;
         Password = password;
         Id = id;
+        URL = url;
     }
 }
 public partial class MainWindow : Window
@@ -113,7 +115,7 @@ public partial class MainWindow : Window
 
         List<User> users = new List<User>();
         int countUser = CountUsers() + 1;
-        users.Add(new User(nicknameBox.Text, passwordBox.Password, countUser.ToString()));
+        users.Add(new User(nicknameBox.Text, passwordBox.Password, countUser.ToString(), ""));
         SafeUser(users);
 
         nowName = nicknameBox.Text;
