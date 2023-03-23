@@ -9,10 +9,67 @@
         Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None">
 
+    <Window.Resources>
+        <ImageBrush x:Key="Marla" ImageSource="https://ih1.redbubble.net/image.2286449021.0448/flat,750x1000,075,f.jpg" />
+        <ImageBrush x:Key="Tyler1" ImageSource="https://i.pinimg.com/originals/d4/ac/91/d4ac918aa13da9e04b70569f6e07a044.jpg"/>
+        <ImageBrush x:Key="Tyler2" ImageSource="https://i.pinimg.com/originals/a7/02/94/a70294d7010183c7e42016703aae2c1a.jpg"/>
 
-    <Border Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <ImageBrush x:Key="Welcoming" ImageSource="https://nofilmschool.com/sites/default/files/styles/facebook/public/fight_club_ending_orignal_.jpeg?itok=SfXDc209"/>
 
+        <Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid >
+                                <Border Width="45" Height="20" Background="LightGray" CornerRadius="10" Margin="5,0"></Border>
+                                <Border x:Name="button" Height="25" Width="25" CornerRadius="12.5" HorizontalAlignment="Left"  ></Border>
+                            </Grid>
+                            <ContentPresenter x:Name="content" Margin="10,0,0,0" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="right">
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="button" Duration="0:0:0.4" From="0,0,0,0" To="28,0,0,0" >
+                                    <ThicknessAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                            <Storyboard x:Key="left">
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="button" Duration="0:0:0.4" From="28,0,0,0" To="0,0,0,0" >
+                                    <ThicknessAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="leftt"></RemoveStoryboard>
+                                    <BeginStoryboard Storyboard="{StaticResource right}" x:Name="rightt" ></BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="button" Property="Background" Value="#757575"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="rightt"></RemoveStoryboard>
+                                    <BeginStoryboard Storyboard="{StaticResource left}" x:Name="leftt" ></BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="button" Property="Background" Value="#20BF55"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Border x:Name="mainBorder" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        
         <Grid>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
@@ -22,17 +79,17 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <!--Left Panel-->
             <Grid Grid.RowSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource MaterialDesignToolButton}" HorizontalAlignment="Left" Margin="20 28 0 35">
+                <Button Visibility="Hidden" Style="{StaticResource MaterialDesignToolButton}" HorizontalAlignment="Left" Margin="20 28 0 35">
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
-                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+                <Border x:Name="leftPanelBorder" Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
                     <DockPanel>
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" 
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
@@ -104,24 +161,154 @@
                 <WrapPanel>
                     <Border Width="100" Height="100" Padding="3" Background="Transparent" CornerRadius="100" 
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0 10 0 0">
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
+                        <Ellipse x:Name="topPanelImage" Margin="10 10 10 10"/>
                     </Border>
-                    <Label x:Name="nameShowLabel" FontSize="18" Background="Transparent" BorderBrush="Transparent" Margin="0 55 0 30" Foreground="Gray" HorizontalAlignment="Center"/>
+                    <Label x:Name="nameShowLabel" FontSize="18" Background="Transparent" BorderBrush="Transparent"
+                           Margin="0 55 0 30" Foreground="Gray" HorizontalAlignment="Center"/>
                 </WrapPanel>
+
+                <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+
+                    <Button x:Name="RollUpButton" Width="22" Height="22" BorderThickness="0" Margin="10" Background="#1227e3"
+                            MouseEnter="RollUpButton_MouseEnter" MouseLeave="RollUpButton_MouseLeave" Click="RollUpButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Fill="{TemplateBinding Background}" />
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="EnlargeButton" Width="22" Height="22" BorderThickness="0" Margin="10" Background="#39c41a"
+                            MouseEnter="EnlargeButton_MouseEnter" MouseLeave="EnlargeButton_MouseLeave" Click="EnlargeButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Fill="{TemplateBinding Background}" />
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="ExitButton" Width="22" Height="22" BorderThickness="0" Margin="10" Click="ExitButton_Click" MouseEnter="ExitButton_MouseEnter" 
+                        MouseLeave="ExitButton_MouseLeave" Background="#fc003b">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Fill="{TemplateBinding Background}" />
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </WrapPanel>
+
             </Grid>
-
-
 
             <!--Main Menu-->
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="textBlockChapterMainMenu" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Main Menu" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
+            <Grid Grid.Column="1" Grid.Row="2" Visibility="Visible" x:Name="gridMainMenu">
+                <Border Background="Transparent" Margin="15" CornerRadius="25">
+                    <Grid Margin="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
+                        <Grid Grid.Row="0">
+                            <Border Background="{DynamicResource Welcoming}" CornerRadius="50" Opacity="0.7"/>
+                            <Border CornerRadius="50">
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Welcome to Fight Club !" Foreground="White" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Candara"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+
+                        <!--3 border button-->
+                        <Grid Grid.Row="2" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Theme-->
+                            <Grid Grid.Column="0">
+                                <Border Background="{DynamicResource Tyler1}" Opacity="0.7" CornerRadius="30" Margin="10"/>
+
+                                <Border Background="Transparent" CornerRadius="30" Margin="10">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="30" Color="#313b35" ShadowDepth="0"/>
+                                    </Border.Effect>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0">
+                                            <CheckBox x:Name="themeCheckBox" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <Icon:PackIconMaterial Foreground="#a0bf17" Width="50" Height="50" Kind="Lightbulb" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25 0 0 0"/>
+                                        </Grid>
+                                        <Grid Grid.Row="2">
+                                            <TextBlock Text="Theme" Foreground="White" FontSize="30" Margin="20 0 0 0" FontFamily="Candara" FontWeight="Medium"/>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Border Background="{DynamicResource Marla}" Opacity="0.6" CornerRadius="30" Margin="10"/>
+
+                                <Border CornerRadius="30" Margin="10">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="30" Color="#313b35" ShadowDepth="0"/>
+                                    </Border.Effect>
+
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock x:Name="textBlockDate" HorizontalAlignment="Center" FontSize="40" Foreground="White" FontFamily="Candara" FontWeight="Medium"/>
+                                        <TextBlock x:Name="textBlockWeekday" HorizontalAlignment="Center" FontSize="30" Foreground="White" FontFamily="Candara" FontWeight="Medium"/>
+                                        <TextBlock x:Name="textBlockTime" HorizontalAlignment="Center" FontSize="40" Foreground="White" FontFamily="Candara" FontWeight="Medium"/>
+                                    </StackPanel>
+                                </Border>
+                                
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Border Background="{DynamicResource Tyler2}" Opacity="0.6" CornerRadius="30" Margin="10"/>
+
+                                <Border CornerRadius="30" Margin="10">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="30" Color="#313b35" ShadowDepth="0"/>
+                                    </Border.Effect>
+
+                                    <Button x:Name="musicButton" Click="musicButton_Click" Background="#21104a" Opacity="0.9" Content="LISTEN" FontFamily="Impact" FontSize="20" Width="150" Height="45" VerticalAlignment="Bottom" Margin="0 0 0 10">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border CornerRadius="25" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    
+                                </Border>
+                            </Grid>
+                            
+                        </Grid>
+                        
+                    </Grid>
+                </Border>
             </Grid>
 
             <!--About Fight Club-->
@@ -129,22 +316,20 @@
                 <TextBlock x:Name="textBlockChapterAboutFC" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="About Fight Club" Margin="10 0 10 0"/>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="2">
-                <ScrollViewer Margin="0 0 0 0">
                     <TextBox IsReadOnly="True" Visibility="Hidden" FontSize="15" VerticalAlignment="Top" Text="Something" x:Name="textBlockAboutFCtext" Height="auto" Width="auto" Margin="20 10 30 10"
                                  TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
-                </ScrollViewer>
             </Grid>
 
             <!--Get Task-->
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="textBlockChapterGetTask" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Get Task" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
+            <Grid x:Name="Gettaskgrid" Visibility="Hidden" Grid.Column="1" Grid.Row="2">
                 <StackPanel Height="300">
-                    <TextBlock Visibility="Hidden" x:Name="textBlockRandomText" FontSize="30" Text="Random Task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
-                    <TextBox Visibility="Hidden" x:Name="textBoxgenerateTask" IsReadOnly="True" FontSize="25" Text="Press 'Generate' to get a task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
-                    <TextBlock Visibility="Hidden" x:Name="textBlockSeparator" Margin="0 0 0 0" DockPanel.Dock="Top" Height="1" Background="White"/>
-                    <Button Visibility="Hidden" x:Name="buttonGenerate" Click="buttonGenerate_Click" FontSize="20" Content="Generate" Width="200" Height="50"/>
+                    <TextBlock x:Name="textBlockRandomText" FontSize="30" Text="Random Task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
+                    <TextBox x:Name="textBoxgenerateTask" IsReadOnly="True" FontSize="25" Text="Press 'Generate' to get a task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
+                    <TextBlock x:Name="textBlockSeparator" Margin="0 0 0 0" DockPanel.Dock="Top" Height="1" Background="White"/>
+                    <Button x:Name="buttonGenerate" Click="buttonGenerate_Click" FontSize="20" Content="Generate" Width="200" Height="50"/>
                 </StackPanel>
             </Grid>
 
@@ -153,75 +338,36 @@
                 <TextBlock x:Name="textBlockChapterParticipants" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Participants" Margin="10 0 10 0"/>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="2" x:Name="GridParticipants" Visibility="Hidden">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                <Border Margin="20" Background="Transparent" x:Name="participantsMainBorder" CornerRadius="30">
+                    <ListView Name="myListView">
+                        <ListView.View>
+                            <GridView>
 
-                    <DataGrid Grid.Column="0" x:Name="myListView" Background="Transparent" IsReadOnly="True"/>
+                                <GridViewColumn Header="#" Width="100" DisplayMemberBinding="{Binding Id}"/>
 
-                    <Border Grid.Column="1" Background="White" CornerRadius="30" Margin="30">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="100"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                                <GridViewColumn Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding URL}" Height="40" Width="40" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <!--ID-->
-                            <Border Grid.ColumnSpan="2" Grid.Row="0" Background="#e05b0d" CornerRadius="20" Margin="20">
-                                <Grid>
-                                    <TextBlock VerticalAlignment="Center" FontSize="20" Grid.Row="0" Text="ID"  Margin="20 0 290 0"/>
-                                    <TextBox TextChanged="TextBox_TextChanged" x:Name="IdTextBox" VerticalAlignment="Center" FontSize="20" Grid.Row="0" Background="Transparent" Text="" Margin="100 7 15 5"/>
-                                </Grid>
-                            </Border>
+                                <GridViewColumn Header="Nickname" Width="300" DisplayMemberBinding="{Binding Nickname}" />
+                                <GridViewColumn Header="Password" Width="300" DisplayMemberBinding="{Binding Password}" />
 
-                            <Border CornerRadius="30" Background="Transparent" Grid.Row="1" Margin="10" Visibility="Hidden" x:Name="BorderWithoutId">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-
-                                    <Border  Grid.Row="0" Grid.Column="0" CornerRadius="100">
-                                        <Ellipse x:Name="imageInProp"/>
-                                    </Border>
-
-                                    <Border Grid.Row="0" Grid.Column="1" CornerRadius="20" Background="Transparent" Margin="10">
-                                        <StackPanel VerticalAlignment="Center">
-                                            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <Icon:PackIconMaterial Foreground="#a40de0" Height="30" Width="30" Kind="Star" Margin="0 5 10 0"/>
-                                                <TextBlock Foreground="#a40de0" Text="Rating" FontSize="30" FontWeight="SemiBold"/>
-                                            </WrapPanel>
-                                            <WrapPanel HorizontalAlignment="Center">
-                                                <TextBox x:Name="ratingPoint" IsReadOnly="True" Foreground="#a40de0" Text="" FontSize="30" HorizontalAlignment="Center"/>
-                                                <TextBox IsReadOnly="True" Foreground="#a40de0" Text=" point" FontSize="30" HorizontalAlignment="Center"/>
-                                            </WrapPanel>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBox x:Name="nameInProp" IsReadOnly="True" Text="" FontSize="30" Foreground="#a40de0"/>
-                                    </StackPanel>
-
-                                </Grid>
-                            </Border>
-
-                        </Grid>
-                    </Border>
-                </Grid>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Border>
             </Grid>
 
             <!--Profile-->
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Visibility="Visible" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
-                <Border Margin="20" Background="Transparent" CornerRadius="50">
+            <Grid Visibility="Hidden" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
+                <Border Margin="20 20 0 20" Background="Transparent" CornerRadius="50">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -236,7 +382,7 @@
                         <Grid Grid.Row="0" Grid.Column="0">
                             <Ellipse x:Name="PhotoEllipse" Margin="15 5 15 5"/>
                         </Grid>
-                        
+
                         <Border Margin="15" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top">
                             <StackPanel>
                                 <Border CornerRadius="20" Background="#8403fc">
@@ -245,49 +391,40 @@
                                 <Border x:Name="borderUrlTextBox" Visibility="Visible" CornerRadius="20" Background="White" Margin="0 10 0 0">
                                     <TextBox x:Name="UrlTextBox" TextChanged="UrlTextBox_TextChanged" Margin="8 0 8 5"/>
                                 </Border>
+                                <Label x:Name="labelErrorUploadPhoto" Content="" Foreground="Red"/>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
                             <Grid Margin="0 30 0 30">
-                                <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Top">
+
+                                <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Top" Margin="0 -10 65 0">
                                     <Grid>
                                         <Icon:PackIconMaterial Kind="Account" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
-                                        <TextBox IsReadOnly="True" x:Name="textBoxUserNameProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
+                                        <TextBox IsReadOnly="False" TextChanged="textBoxUserNameProfile_TextChanged" x:Name="textBoxUserNameProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
                                     </Grid>
                                 </Border>
+                                <Label x:Name="labelErrorNickname" Content="" Margin="10 65 0 0" Foreground="Red"/>
 
-                                <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Bottom">
+                                <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Bottom" Margin="0 0 65 20">
                                     <Grid>
                                         <Icon:PackIconMaterial Kind="Key" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
-                                        <TextBox IsReadOnly="True" x:Name="textBoxUserPasswordProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
+                                        <TextBox IsReadOnly="False" x:Name="textBoxUserPasswordProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
                                     </Grid>
                                 </Border>
+                                <CheckBox Click="CheckBox_Click" Content="Show" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 10 50"/>
+                                <Label x:Name="labelErrorPassword" Content="" Margin="10 165 0 0" Foreground="Red" VerticalAlignment="Bottom"/>
                             </Grid>
                         </Border>
 
                         <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="25" CornerRadius="30" VerticalAlignment="Bottom" Background="#6400c2">
                             <Button x:Name="saveChanges" Click="SaveChanges_Click" VerticalAlignment="Bottom" Margin="10" Content="Save Changes" Background="Transparent" BorderBrush="Transparent"/>
                         </Border>
-
-                        <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Transparent" Margin="20">
-                            <TextBlock Text="Rating : " Margin="10" FontSize="20" FontWeight="Bold" Foreground="#6400c2"/>
-                            <TextBlock x:Name="pointInProfile" Text="" Margin="0 10 0 0" FontSize="20" Foreground="#6400c2" FontWeight="DemiBold"/>
-                            <TextBlock Text=" point" Margin="0 10 0 0" FontSize="20" Foreground="#6400c2" FontWeight="DemiBold"/>
-                            <Icon:PackIconMaterial Kind="Star" Margin="7" Height="20" Width="20" VerticalAlignment="Center" Foreground="#6400c2"/>
-                        </WrapPanel>
-
-                        <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Background="Transparent" Margin="20">
-                            <TextBlock Text="Status : " Margin="10" FontSize="20" FontWeight="Bold" Foreground="#6400c2"/>
-                            <TextBlock x:Name="statucInProfile" Text="" Margin="0 10 0 0" FontSize="20" Foreground="#6400c2" FontWeight="DemiBold"/>
-                            <Icon:PackIconMaterial Kind="Crown" Margin="7" Height="20" Width="20" VerticalAlignment="Center" Foreground="#6400c2"/>
-                        </WrapPanel>
-
+                        
                     </Grid>
                 </Border>
             </Grid>
-
-
+            
         </Grid>
     </Border>
 </Window>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,11 @@ using static System.Net.WebRequestMethods;
 namespace Fight_Club;
 public partial class Window1
 {
+    bool isChanged = false;
     private string defaultImage = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png";
     private string path = "characters.txt";
 
+    private bool isCheckBoxPressed = false;
     private bool isUpploadPhotoPressed = false;
     void Button_MouseLeave_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = Brushes.White;
     void Button_MouseEnter_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = buttonProfile.Background == Brushes.LightGreen ? Brushes.White : Brushes.LightGreen;
@@ -64,16 +67,23 @@ public partial class Window1
     {
         string read = System.IO.File.ReadAllText(path);
         var res = JsonConvert.DeserializeObject<List<User>>(read);
-
+        int count = 0;
         foreach(var item in res)
         {
             if (item.Nickname == MainWindow.nowName)
             {
                 textBoxUserNameProfile.Text = item.Nickname;
-                textBoxUserPasswordProfile.Text = item.Password;
+                textBoxUserPasswordProfile.Text = setShifrPassword(item.Password);
                 break;
             }
         }
+    }
+    private string setShifrPassword(string password)
+    {
+        StringBuilder p = new StringBuilder(password.Length);
+        for(int i = 0; i < password.Length; i++)
+            p = p.Append("🞄");
+        return p.ToString();
     }
     private void SaveChanges_Click(object sender, RoutedEventArgs e)
     {
@@ -88,12 +98,23 @@ public partial class Window1
             {
                 string newNick = textBoxUserNameProfile.Text;
                 string newPassword = textBoxUserPasswordProfile.Text;
-                string newUrl = UrlTextBox.Text;
+
+                string newUrl = string.Empty;
+                if(isChanged)
+                    newUrl = UrlTextBox.Text;
+                else
+                    newUrl = item.URL;
+
                 newUsers.Add(new User(newNick, newPassword, item.Id, newUrl));
                 MainWindow.nowName = textBoxUserNameProfile.Text;
+                var bitmap = new BitmapImage(new Uri(newUrl));
+                topPanelImage.Fill = new ImageBrush(bitmap);
+                nameShowLabel.Content = newNick;
             }
             else
+            {
                 newUsers.Add(new User(item.Nickname, item.Password, item.Id, item.URL));
+            }
         }
 
         var jsonSer = JsonConvert.SerializeObject(newUsers);
@@ -115,6 +136,7 @@ public partial class Window1
             saveChanges.IsEnabled = false;
         if(string.IsNullOrEmpty(UrlTextBox.Text))
             saveChanges.IsEnabled = true;
+        isChanged = true;
     }
     public static bool IsUrl(string url)
     {
@@ -132,5 +154,55 @@ public partial class Window1
             borderUrlTextBox.Visibility = Visibility.Hidden;
         else
             borderUrlTextBox.Visibility = Visibility.Visible;
+    }
+
+    private bool checkExist(string nick) // проверяет на существование пользователя с таким же ником
+    {
+        if(System.IO.File.ReadAllText(path).Any())
+        {
+            var read = System.IO.File.ReadAllText(path);
+            var res = JsonConvert.DeserializeObject<List<User>>(read);
+
+            foreach(var item in res!)
+            {
+                if(item.Nickname == nick)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+    private void textBoxUserNameProfile_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if(checkExist(textBoxUserNameProfile.Text) && textBoxUserNameProfile.Text != MainWindow.nowName)
+        {
+            labelErrorNickname.Content = "Error: this nickname has already exist!";
+            saveChanges.IsEnabled = false;
+        }
+        else
+        {
+            labelErrorNickname.Content = string.Empty;
+            saveChanges.IsEnabled = true;
+        }
+    }
+    private void CheckBox_Click(object sender, RoutedEventArgs e)
+    {
+        string nowPassword = string.Empty;
+        string read = System.IO.File.ReadAllText(path);
+        var json = JsonConvert.DeserializeObject<List<User>>(read);
+        foreach(var item in json)
+        {
+            if (item.Nickname == MainWindow.nowName)
+            {
+                nowPassword = item.Password;
+                break;
+            }
+        }
+
+        isCheckBoxPressed = isCheckBoxPressed == false ? true : false;
+        if(isCheckBoxPressed)
+            textBoxUserPasswordProfile.Text = nowPassword;
+        else
+            textBoxUserPasswordProfile.Text = setShifrPassword(nowPassword);
     }
 }

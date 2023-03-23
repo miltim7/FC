@@ -32,7 +32,6 @@ class User
     public string Id { get; set; }
     public string Nickname { get; set; }
     public string Password { get; set; }
-    public string Rating { get; set; }
     public string URL { get; set; }
     public User(string nickname, string password, string id, string url)
     {

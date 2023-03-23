@@ -20,21 +20,15 @@ public partial class Window1
         textBlockGetTask.Foreground = Brushes.White;
         buttonGT.Background = Brushes.LightGreen;
         textBlockChapterGetTask.Visibility = Visibility.Visible;
-        textBlockRandomText.Visibility = Visibility.Visible;
-        textBoxgenerateTask.Visibility = Visibility.Visible;
-        textBlockSeparator.Visibility = Visibility.Visible;
-        buttonGenerate.Visibility = Visibility.Visible;
+        Gettaskgrid.Visibility = Visibility.Visible;
     }
     void setDefaultGT()
     {
         buttonGT.Background = Brushes.Transparent;
         textBlockChapterGetTask.Visibility = Visibility.Hidden;
-        textBlockRandomText.Visibility = Visibility.Hidden;
-        textBoxgenerateTask.Visibility = Visibility.Hidden;
-        textBlockSeparator.Visibility = Visibility.Hidden;
-        buttonGenerate.Visibility = Visibility.Hidden;
+        Gettaskgrid.Visibility = Visibility.Hidden;
     }
-    private async void buttonGenerate_Click(object sender, RoutedEventArgs e) // GENERATE
+    private async void buttonGenerate_Click(object sender, RoutedEventArgs e)
     {
         string read = File.ReadAllText("Tasks.txt");
         var res = JsonConvert.DeserializeObject<List<GetTask>>(read);
@@ -45,7 +39,7 @@ public partial class Window1
             foreach(var item in res!) // поставил так как предупреждение мешало
             {
                 textBoxgenerateTask.Text = item.Tasks;
-                await Task.Delay(50); // от этого логика никак не меняется, только украшивает процесс анимации (Sleep не работал)
+                await Task.Delay(50); // от этого логика никак не меняется, только украшает процесс анимации (Sleep не работал)
             }
             textBoxgenerateTask.Clear();
         }

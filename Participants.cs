@@ -29,49 +29,4 @@ public partial class Window1
         textBlockChapterParticipants.Visibility = Visibility.Hidden;
         GridParticipants.Visibility = Visibility.Hidden;
     }
-    private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) // ID changed
-    {
-        string read = File.ReadAllText("characters.txt");
-        var res = JsonConvert.DeserializeObject<List<User>>(read);
-
-        IdTextBox.Text = IdTextBox.Text.Trim();
-
-        int number = 0;
-        var num = int.TryParse(IdTextBox.Text, out number);
-        if(number < 1 || number > res?.Count)
-        {
-            BorderWithoutId.Visibility = Visibility.Hidden;
-            return;
-        }
-
-        for(int i = 0; i < IdTextBox.Text.Length; i++)
-            if(!char.IsDigit(IdTextBox.Text[i]))
-            {
-                BorderWithoutId.Visibility = Visibility.Hidden;
-                return;
-            }
-
-
-        string name = string.Empty;
-        string rating = string.Empty;
-        string nowPhoto = string.Empty;
-        foreach(var item in res)
-        {
-            if(item.Id == number.ToString())
-            {
-                name = item.Nickname;
-                rating = "0";
-                nowPhoto = item.URL;
-            }
-        }
-
-        if(string.IsNullOrWhiteSpace(nowPhoto))
-            nowPhoto = defaultImage;
-        var bitmap = new BitmapImage(new Uri(nowPhoto));
-        imageInProp.Fill = new ImageBrush(bitmap);
-
-        ratingPoint.Text = rating;
-        nameInProp.Text = name;
-        BorderWithoutId.Visibility = Visibility.Visible;
-    }
 }
