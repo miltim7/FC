@@ -16,6 +16,8 @@
 
         <ImageBrush x:Key="Welcoming" ImageSource="https://nofilmschool.com/sites/default/files/styles/facebook/public/fight_club_ending_orignal_.jpeg?itok=SfXDc209"/>
 
+
+
         <Style TargetType="CheckBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -64,9 +66,8 @@
             </Setter>
         </Style>
     </Window.Resources>
-
-
-    <Border x:Name="mainBorder" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    
+    <Border x:Name="mainBorder" Background="#1f1d16" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         
         <Grid>
             
@@ -89,7 +90,7 @@
                 <Button Visibility="Hidden" Style="{StaticResource MaterialDesignToolButton}" HorizontalAlignment="Left" Margin="20 28 0 35">
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
-                <Border x:Name="leftPanelBorder" Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+                <Border x:Name="leftPanelBorder" Grid.Row="1" Background="#2c0f4a" CornerRadius="0 50 0 30">
                     <DockPanel>
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" 
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
@@ -141,9 +142,9 @@
                                 </WrapPanel>
                             </Button>
 
-                            <TextBlock Margin="25 210 25 0" DockPanel.Dock="Top" Height="1" Background="#7e5fdc"/>
+                            <TextBlock Margin="25 210 25 0" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Height="1" Background="#7e5fdc"/>
 
-                            <Button Click="Button_Click_1" MouseLeave="Button_MouseLeave_5" MouseEnter="Button_MouseEnter_5" Background="Transparent" BorderBrush="Transparent" Margin="0 10 0 0">
+                            <Button VerticalAlignment="Bottom" Click="Button_Click_1" MouseLeave="Button_MouseLeave_5" MouseEnter="Button_MouseEnter_5" Background="Transparent" BorderBrush="Transparent" Margin="0 10 0 0">
                                 <WrapPanel>
                                     <Icon:PackIconMaterial Kind="Logout" Margin="0 1.5 5 0"/>
                                     <TextBlock Text="Log out" x:Name="textBlockLogOut"/>
@@ -211,9 +212,9 @@
 
             <!--Main Menu-->
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock x:Name="textBlockChapterMainMenu" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Main Menu" Margin="10 0 10 0"/>
+                <TextBlock Foreground="White" x:Name="textBlockChapterMainMenu" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Main Menu" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2" Visibility="Visible" x:Name="gridMainMenu">
+            <Grid Grid.Column="1" Grid.Row="2" Visibility="Hidden" x:Name="gridMainMenu">
                 <Border Background="Transparent" Margin="15" CornerRadius="25">
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
@@ -313,58 +314,63 @@
 
             <!--About Fight Club-->
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock x:Name="textBlockChapterAboutFC" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="About Fight Club" Margin="10 0 10 0"/>
+                <TextBlock Foreground="White" x:Name="textBlockChapterAboutFC" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="About Fight Club" Margin="10 0 10 0"/>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="2">
                     <TextBox IsReadOnly="True" Visibility="Hidden" FontSize="15" VerticalAlignment="Top" Text="Something" x:Name="textBlockAboutFCtext" Height="auto" Width="auto" Margin="20 10 30 10"
-                                 TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                                 Foreground="White" TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
             </Grid>
 
             <!--Get Task-->
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock x:Name="textBlockChapterGetTask" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Get Task" Margin="10 0 10 0"/>
+                <TextBlock Foreground="White" x:Name="textBlockChapterGetTask" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Get Task" Margin="10 0 10 0"/>
             </Grid>
             <Grid x:Name="Gettaskgrid" Visibility="Hidden" Grid.Column="1" Grid.Row="2">
                 <StackPanel Height="300">
-                    <TextBlock x:Name="textBlockRandomText" FontSize="30" Text="Random Task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
-                    <TextBox x:Name="textBoxgenerateTask" IsReadOnly="True" FontSize="25" Text="Press 'Generate' to get a task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
-                    <TextBlock x:Name="textBlockSeparator" Margin="0 0 0 0" DockPanel.Dock="Top" Height="1" Background="White"/>
+                    <TextBlock Foreground="White" x:Name="textBlockRandomText" FontSize="30" Text="Random Task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
+                    <TextBox Foreground="White" x:Name="textBoxgenerateTask" IsReadOnly="True" FontSize="25" Text="Press 'Generate' to get a task" HorizontalAlignment="Center" Margin="0 0 0 30"/>
                     <Button x:Name="buttonGenerate" Click="buttonGenerate_Click" FontSize="20" Content="Generate" Width="200" Height="50"/>
                 </StackPanel>
             </Grid>
 
             <!--Participants-->
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock x:Name="textBlockChapterParticipants" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Participants" Margin="10 0 10 0"/>
+                <TextBlock Foreground="White" x:Name="textBlockChapterParticipants" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Participants" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2" x:Name="GridParticipants" Visibility="Hidden">
-                <Border Margin="20" Background="Transparent" x:Name="participantsMainBorder" CornerRadius="30">
+            <Grid Grid.Column="1" Grid.Row="2" x:Name="GridParticipants" Visibility="Visible">
+                <Border Margin="20 20 20 80" Background="WhiteSmoke" x:Name="participantsMainBorder" CornerRadius="30">
                     <ListView Name="myListView">
                         <ListView.View>
                             <GridView>
-
                                 <GridViewColumn Header="#" Width="100" DisplayMemberBinding="{Binding Id}"/>
-
                                 <GridViewColumn Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding URL}" Height="40" Width="40" />
+                                            <Image Source="{Binding URL}" Height="40" Width="40"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-
                                 <GridViewColumn Header="Nickname" Width="300" DisplayMemberBinding="{Binding Nickname}" />
                                 <GridViewColumn Header="Password" Width="300" DisplayMemberBinding="{Binding Password}" />
-
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Border>
+                
+                <Button x:Name="deleteButton" Click="deleteButton_Click" VerticalAlignment="Bottom" Margin="20 20 20 20" HorizontalAlignment="Center" Width="700" Content="DELETE" FontFamily="Lucida Console">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
 
             <!--Profile-->
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
+                <TextBlock Foreground="White" x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
             </Grid>
             <Grid Visibility="Hidden" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
                 <Border Margin="20 20 0 20" Background="Transparent" CornerRadius="50">
@@ -395,9 +401,8 @@
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="25 0 -25 -30">
                             <Grid Margin="0 30 0 30">
-
                                 <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Top" Margin="0 -10 65 0">
                                     <Grid>
                                         <Icon:PackIconMaterial Kind="Account" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
@@ -405,15 +410,6 @@
                                     </Grid>
                                 </Border>
                                 <Label x:Name="labelErrorNickname" Content="" Margin="10 65 0 0" Foreground="Red"/>
-
-                                <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Bottom" Margin="0 0 65 20">
-                                    <Grid>
-                                        <Icon:PackIconMaterial Kind="Key" Margin="7" Height="30" Width="30" VerticalAlignment="Center" Foreground="Black"/>
-                                        <TextBox IsReadOnly="False" x:Name="textBoxUserPasswordProfile" FontSize="50" Margin="60 0 25 0" Foreground="White"/>
-                                    </Grid>
-                                </Border>
-                                <CheckBox Click="CheckBox_Click" Content="Show" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 10 50"/>
-                                <Label x:Name="labelErrorPassword" Content="" Margin="10 165 0 0" Foreground="Red" VerticalAlignment="Bottom"/>
                             </Grid>
                         </Border>
 

@@ -114,7 +114,7 @@ public partial class MainWindow : Window
 
         List<User> users = new List<User>();
         int countUser = CountUsers() + 1;
-        users.Add(new User(nicknameBox.Text, passwordBox.Password, countUser.ToString(), ""));
+        users.Add(new User(nicknameBox.Text, passwordBox.Password, countUser.ToString(), "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"));
         SafeUser(users);
 
         nowName = nicknameBox.Text;

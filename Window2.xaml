@@ -1,0 +1,27 @@
+﻿<Window x:Class="Fight_Club.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fight_Club"
+        mc:Ignorable="d"
+        Title="Window2" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+    <StackPanel VerticalAlignment="Center">
+        <TextBlock Text="Set the delete permission" HorizontalAlignment="Center" FontSize="40"/>
+        <PasswordBox x:Name="passwordBox" Background="LightBlue" Width="300" FontSize="30" Margin="20 20 0 0"/>
+        <Label x:Name="errorLabel" Foreground="red" Content="Wrong Password!" HorizontalAlignment="Center" Margin="0 0 0 20" Visibility="Hidden"/>
+        <Button x:Name="setButton" Width="400" Content="Set" Click="Button_Click"/>
+
+        <StackPanel x:Name="panelAfterSet" Visibility="Hidden">
+            <DockPanel HorizontalAlignment="Center">
+                <TextBlock Text="ID: " FontSize="20" Margin="0 20 0 0"/>
+                <TextBox x:Name="IdTextBox" Width="100" Background="LightBlue" Margin="0 20 0 0"/>
+            </DockPanel>
+            <Label x:Name="errorLabel2" Content="" Foreground="Red" HorizontalAlignment="Center" Visibility="Visible"/>
+            <Button Click="Button_Click_1" Width="200" Margin="20" Content="DELETE"/>
+        </StackPanel>
+    </StackPanel>
+    
+    
+</Window>

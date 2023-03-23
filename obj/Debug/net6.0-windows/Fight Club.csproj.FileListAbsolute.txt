@@ -34,3 +34,5 @@ C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Fight Club.genru
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\ref\Fight Club.dll
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.g.cs
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.baml
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window2.g.cs
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window2.baml

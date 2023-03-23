@@ -29,4 +29,9 @@ public partial class Window1
         textBlockChapterParticipants.Visibility = Visibility.Hidden;
         GridParticipants.Visibility = Visibility.Hidden;
     }
+    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        Window2 window2 = new Window2();
+        window2.Show();
+    }
 }

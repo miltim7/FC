@@ -73,7 +73,6 @@ public partial class Window1
             if (item.Nickname == MainWindow.nowName)
             {
                 textBoxUserNameProfile.Text = item.Nickname;
-                textBoxUserPasswordProfile.Text = setShifrPassword(item.Password);
                 break;
             }
         }
@@ -97,15 +96,17 @@ public partial class Window1
             if (item.Nickname == MainWindow.nowName)
             {
                 string newNick = textBoxUserNameProfile.Text;
-                string newPassword = textBoxUserPasswordProfile.Text;
 
                 string newUrl = string.Empty;
+
                 if(isChanged)
                     newUrl = UrlTextBox.Text;
                 else
+                {
                     newUrl = item.URL;
+                }
 
-                newUsers.Add(new User(newNick, newPassword, item.Id, newUrl));
+                newUsers.Add(new User(newNick, item.Password, item.Id, newUrl));
                 MainWindow.nowName = textBoxUserNameProfile.Text;
                 var bitmap = new BitmapImage(new Uri(newUrl));
                 topPanelImage.Fill = new ImageBrush(bitmap);
@@ -184,25 +185,5 @@ public partial class Window1
             labelErrorNickname.Content = string.Empty;
             saveChanges.IsEnabled = true;
         }
-    }
-    private void CheckBox_Click(object sender, RoutedEventArgs e)
-    {
-        string nowPassword = string.Empty;
-        string read = System.IO.File.ReadAllText(path);
-        var json = JsonConvert.DeserializeObject<List<User>>(read);
-        foreach(var item in json)
-        {
-            if (item.Nickname == MainWindow.nowName)
-            {
-                nowPassword = item.Password;
-                break;
-            }
-        }
-
-        isCheckBoxPressed = isCheckBoxPressed == false ? true : false;
-        if(isCheckBoxPressed)
-            textBoxUserPasswordProfile.Text = nowPassword;
-        else
-            textBoxUserPasswordProfile.Text = setShifrPassword(nowPassword);
     }
 }
