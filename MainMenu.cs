@@ -64,6 +64,7 @@ public partial class Window1
         textBlockChapterParticipants.Foreground = Brushes.Black;
         textBlockChapterProfile.Foreground = Brushes.Black;
         textBlockChapterAboutFC.Foreground = Brushes.Black;
+        areYouSureText.Foreground = Brushes.Black;
     }
 
     private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -81,6 +82,7 @@ public partial class Window1
         textBlockChapterParticipants.Foreground = Brushes.White;
         textBlockChapterProfile.Foreground = Brushes.White;
         textBlockChapterAboutFC.Foreground = Brushes.White;
+        areYouSureText.Foreground = Brushes.White;
     }
     private void musicButton_Click(object sender, RoutedEventArgs e)
     {

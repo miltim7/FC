@@ -52,7 +52,7 @@ namespace Fight_Club
                     int num = int.Parse(IdTextBox.Text.ToString());
                     if (num < 1)
                     {
-                        errorLabel2.Content = "number cant be < 0";
+                        errorLabel2.Content = "id cant be < 0";
                         return;
                     }
                     else if (!IsSuchId(num))
@@ -64,6 +64,7 @@ namespace Fight_Club
                     {
                         DeleteUser(num);
                         this.Close();
+                        break;
                     }
                 }
             }
