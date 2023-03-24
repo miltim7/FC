@@ -337,7 +337,7 @@
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock Foreground="White" x:Name="textBlockChapterParticipants" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Participants" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2" x:Name="GridParticipants" Visibility="Visible">
+            <Grid Grid.Column="1" Grid.Row="2" x:Name="GridParticipants" Visibility="Hidden">
                 <Border Margin="20 20 20 80" Background="WhiteSmoke" x:Name="participantsMainBorder" CornerRadius="30">
                     <ListView Name="myListView">
                         <ListView.View>

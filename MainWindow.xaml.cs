@@ -182,4 +182,14 @@ public partial class MainWindow : Window
 
         return false;
     }
+
+    private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if(e.ChangedButton == MouseButton.Left)
+        {
+            this.DragMove();
+        }
+    }
+
+    private void Button_Click_2(object sender, RoutedEventArgs e) => this.Close();
 }

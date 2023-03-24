@@ -117,9 +117,9 @@ public partial class Window1
                 newUsers.Add(new User(item.Nickname, item.Password, item.Id, item.URL));
             }
         }
-
         var jsonSer = JsonConvert.SerializeObject(newUsers);
         System.IO.File.WriteAllText(path, jsonSer);
+        myListView.ItemsSource = LoadToGrid("characters.txt");
     }
 
     private void UrlTextBox_TextChanged(object sender, TextChangedEventArgs e)

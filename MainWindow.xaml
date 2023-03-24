@@ -3,43 +3,68 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fight_Club" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="700" Width="1000">
+        Height="645" Width="875" WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" FontSize="18" FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <Grid>
+    <Grid Margin="20">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="1" Opacity="0.4"/>
+        </Grid.Effect>
 
-        <Rectangle>
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="https://wallup.net/wp-content/uploads/2016/01/62554-abstract-dark-748x468.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.22*"/>
+        </Grid.ColumnDefinitions>
 
+        <!--Left Section-->
+        <Border Background="{DynamicResource MaterialDesignShadowBrush}" CornerRadius="10 0 0 10" ClipToBounds="True">
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,400,605"/>
+            </Border.Clip>
 
-        <Border MinWidth="400" MaxWidth="500" Margin="15" Background="#292b2e" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+            <Grid>
+                <!--Title-->
+                <StackPanel Margin="0 120 0 0" VerticalAlignment="Top">
+                    <TextBlock Text="FIGHT CLUB" FontSize="46" FontWeight="Light" Foreground="#851911" TextAlignment="Center" FontFamily="Impact"/>
+                    <TextBlock Text="Exclusive society for men seeking" FontWeight="Light" FontSize="16" Foreground="#750c05" TextAlignment="Center" Margin="0 15 0 3"/>
+                    <TextBlock Text="to break societal constrains violently" FontWeight="Light" FontSize="16" Foreground="#750c05" TextAlignment="Center"/>
+                </StackPanel>
 
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="30" Color="#313b35" ShadowDepth="0"/>
-            </Border.Effect>
-
-            <StackPanel>
-                <TextBlock Text="FIGHT CLUB" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
-                <TextBlock Margin="0 20 0 0" Text="Exclusive society for men seeking" FontSize="15" HorizontalAlignment="Center"/>
-                <TextBlock Text="to break societal constraints violently" FontSize="15" HorizontalAlignment="Center"/>
-                <TextBox x:Name="nicknameBox" FontSize="20" Foreground="White" materialDesign:HintAssist.Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:HintAssist.Hint="Nickname" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Label x:Name="error1" Content="" Foreground="Red"/>
-                <PasswordBox x:Name="passwordBox" FontSize="20" Foreground="White" materialDesign:HintAssist.Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <Label x:Name="error2" Content="" Foreground="Red"/>
-                <Grid Margin="0, 20, 0, 20">
-                    <Button Click="Button_Click" HorizontalAlignment="Left" Content="Sign up" Width="100" Background="#1f2120" BorderBrush="Black"/>
-                    <Button Click="Button_Click_1" HorizontalAlignment="Right" Content="Log in" Width="100" Background="#1f2120" BorderBrush="Black"/>
-                </Grid>
-
-            </StackPanel>
-
+            </Grid>
         </Border>
 
+        <!--Right Section-->
+        <Border Grid.Column="1" Background="#ffffff" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
+            <Grid>
+
+                <!--Close Icon-->
+                <Button BorderBrush="Transparent" Background="Transparent" Click="Button_Click" VerticalAlignment="Top" Width="40" Height="40" HorizontalAlignment="Right"/>
+                <materialDesign:PackIcon Kind="Close" Foreground="Gray" VerticalAlignment="Top" Width="20" Height="20" HorizontalAlignment="Right" Margin="0 13 14 0"/>
+                <Button Click="Button_Click_2" VerticalAlignment="Top" Width="20" Height="20" HorizontalAlignment="Right" Margin="0 13 14 0" Background="Transparent" BorderBrush="Transparent"/>
+
+                <!--Inputs-->
+                <StackPanel VerticalAlignment="Center" Margin="75 0">
+                    <TextBox x:Name="nicknameBox" BorderThickness="0 0 0 1.5" BorderBrush="#C5C8CC" materialDesign:HintAssist.FloatingOffset="0,-20" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Label x:Name="error1" Foreground="Red" FontSize="10" FontWeight="Light"/>
+                    <PasswordBox x:Name="passwordBox" BorderThickness="0 0 0 1.5" BorderBrush="#C5C8CC" materialDesign:HintAssist.FloatingOffset="0,-18" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                    <Label x:Name="error2" Foreground="Red" FontSize="10" FontWeight="Light"/>
+
+                    <CheckBox Margin="0 40 0 20" FontSize="13">
+                        <TextBlock>
+                            <Run Foreground="#b6b6b6">By signing up I agree with</Run>
+                            <Run Foreground="#40120f">terms and conditions</Run>
+                        </TextBlock>
+                    </CheckBox>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="Button_Click" Content="Sign up" Background="#40120f" Foreground="#ffffff" FontSize="18" materialDesign:ButtonAssist.CornerRadius="22" Height="45" Width="120"/>
+                        <Button Click="Button_Click_1" Content="Login" Foreground="#40120f" materialDesign:ButtonAssist.CornerRadius="22" FontSize="16" Height="45" Width="120" Margin="5 0 0 0" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 
 </Window>
