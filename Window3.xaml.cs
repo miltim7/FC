@@ -25,8 +25,7 @@ namespace Fight_Club
 
         private void passwordBox1_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            string read = File.ReadAllText("characters.txt");
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
+            var json = GeneralOptions.GetUsers();
 
             foreach(var item in json)
             {
@@ -50,8 +49,7 @@ namespace Fight_Club
         private void button_Click(object sender, RoutedEventArgs e)
         {
             List<User> newUsers = new List<User>();
-            string read = File.ReadAllText("characters.txt");
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
+            var json = GeneralOptions.GetUsers();
 
             foreach(var item in json)
             {

@@ -27,21 +27,6 @@ using System.Diagnostics.Contracts;
 
 namespace Fight_Club;
 
-class User
-{
-    public string Id { get; set; }
-    public string Nickname { get; set; }
-    public string Password { get; set; }
-    public string URL { get; set; }
-    public User(string nickname, string password, string id, string url)
-    {
-
-        Nickname = nickname;
-        Password = password;
-        Id = id;
-        URL = url;
-    }
-}
 public partial class MainWindow : Window
 {
     string path = "characters.txt";
@@ -82,6 +67,7 @@ public partial class MainWindow : Window
         }
         else
             error2.Content = string.Empty;
+
         nowName = nicknameBox.Text;
         Window1 window1 = new Window1();
         this.Close();
@@ -112,33 +98,24 @@ public partial class MainWindow : Window
         else
             error2.Content = string.Empty;
 
+
         List<User> users = new List<User>();
-        int countUser = CountUsers() + 1;
-
-        var read = File.ReadAllText(path);
-        var res = JsonConvert.DeserializeObject<List<User>>(read);
-
-        int s = 0;
-        foreach(var item in res)
-        {
-            s = int.Parse(item.Id);
-        }
-        s++;
-
-        users.Add(new User(nicknameBox.Text, passwordBox.Password, s.ToString(), "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"));
+        users.Add(new User(nicknameBox.Text, passwordBox.Password, setNewId().ToString(), "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"));
         SafeUser(users);
-
         nowName = nicknameBox.Text;
         Window1 window1 = new Window1();
         this.Close();
         window1.ShowDialog();
     }
 
-    int CountUsers()
+    private string setNewId()
     {
-        var read = File.ReadAllText(path);
-        var res = JsonConvert.DeserializeObject<List<User>>(read);
-        return res.Count;
+        var res = GeneralOptions.GetUsers();
+        int s = 0;
+        foreach(var item in res)
+            s = int.Parse(item.Id);
+        s++;
+        return s.ToString();
     }
     private void SafeUser(List<User> users)
     {
@@ -164,10 +141,8 @@ public partial class MainWindow : Window
     {
         if(File.ReadAllText(path).Any())
         {
-            var read = File.ReadAllText(path);
-            var res = JsonConvert.DeserializeObject<List<User>>(read);
-
-            foreach(var item in res!)
+            var res = GeneralOptions.GetUsers();
+            foreach(var item in res)
             {
                 if(item.Nickname == name)
                     return item.Password;
@@ -197,10 +172,25 @@ public partial class MainWindow : Window
     private void Border_MouseDown(object sender, MouseButtonEventArgs e)
     {
         if(e.ChangedButton == MouseButton.Left)
-        {
             this.DragMove();
-        }
     }
 
-    private void Button_Click_2(object sender, RoutedEventArgs e) => this.Close();
+    private void Button_Click_2(object sender, RoutedEventArgs e) => this.Close(); // Close button
+}
+
+
+class User
+{
+    public string Id { get; set; }
+    public string Nickname { get; set; }
+    public string Password { get; set; }
+    public string URL { get; set; }
+    public User(string nickname, string password, string id, string url)
+    {
+
+        Nickname = nickname;
+        Password = password;
+        Id = id;
+        URL = url;
+    }
 }

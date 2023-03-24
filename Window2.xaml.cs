@@ -49,7 +49,6 @@ namespace Fight_Club
                 }
                 else
                 {
-                    int count = CountPart();
                     int num = int.Parse(IdTextBox.Text.ToString());
                     if (num < 1)
                     {
@@ -72,29 +71,18 @@ namespace Fight_Club
 
         private bool IsSuchId(int id)
         {
-            string read = File.ReadAllText("characters.txt");
-
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
+            var json = GeneralOptions.GetUsers();
 
             foreach(var item in json)
             {
                 if (item.Id == id.ToString())
                     return true;
             }
-
             return false;
         }
-        private int CountPart()
-        {
-            string read = File.ReadAllText("characters.txt");
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
-            return json.Count;
-        }
-
         private void DeleteUser(int id)
         {
-            string read = File.ReadAllText("characters.txt");
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
+            var json = GeneralOptions.GetUsers();
             List<User> users = new List<User>();
             foreach(var item in json)
             {

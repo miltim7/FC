@@ -21,10 +21,9 @@ using static System.Net.WebRequestMethods;
 namespace Fight_Club;
 public partial class Window1
 {
-    bool isChanged = false;
+    private bool isChanged = false;
     private string defaultImage = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png";
     private string path = "characters.txt";
-
     private bool isUpploadPhotoPressed = false;
     void Button_MouseLeave_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = Brushes.White;
     void Button_MouseEnter_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = buttonProfile.Background == Brushes.LightGreen ? Brushes.White : Brushes.LightGreen;
@@ -49,8 +48,7 @@ public partial class Window1
     }
     private string nowAvatar()
     {
-        string read = System.IO.File.ReadAllText(path);
-        var json = JsonConvert.DeserializeObject<List<User>>(read);
+        var json = GeneralOptions.GetUsers();
         foreach(var item in json)
         {
             if (item.Nickname == MainWindow.nowName)
@@ -64,10 +62,9 @@ public partial class Window1
     }
     private void setUserData()
     {
-        string read = System.IO.File.ReadAllText(path);
-        var res = JsonConvert.DeserializeObject<List<User>>(read);
+        var json = GeneralOptions.GetUsers();
         int count = 0;
-        foreach(var item in res)
+        foreach(var item in json)
         {
             if (item.Nickname == MainWindow.nowName)
             {
@@ -86,24 +83,19 @@ public partial class Window1
     private void SaveChanges_Click(object sender, RoutedEventArgs e)
     {
         List<User> newUsers = new List<User>();
+        var jsonDes = GeneralOptions.GetUsers();
 
-        string read = System.IO.File.ReadAllText(path);
-        var jsonDes = JsonConvert.DeserializeObject<List<User>>(read);
+        string newNick = textBoxUserNameProfile.Text;
+        string newUrl = string.Empty;
 
         foreach(var item in jsonDes)
         {
             if (item.Nickname == MainWindow.nowName)
             {
-                string newNick = textBoxUserNameProfile.Text;
-
-                string newUrl = string.Empty;
-
                 if(isChanged)
                     newUrl = UrlTextBox.Text;
                 else
-                {
                     newUrl = item.URL;
-                }
 
                 newUsers.Add(new User(newNick, item.Password, item.Id, newUrl));
                 MainWindow.nowName = textBoxUserNameProfile.Text;
@@ -112,9 +104,7 @@ public partial class Window1
                 nameShowLabel.Content = newNick;
             }
             else
-            {
                 newUsers.Add(new User(item.Nickname, item.Password, item.Id, item.URL));
-            }
         }
         var jsonSer = JsonConvert.SerializeObject(newUsers);
         System.IO.File.WriteAllText(path, jsonSer);

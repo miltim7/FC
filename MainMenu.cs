@@ -21,14 +21,16 @@ public partial class Window1
         buttonMainMenu.Background = Brushes.LightGreen;
         textBlockChapterMainMenu.Visibility = Visibility.Visible;
         gridMainMenu.Visibility = Visibility.Visible;
-
+        setNowDate();
+    }
+    private void setNowDate()
+    {
         DateTime date = DateTime.Now;
-
         textBlockDate.Text = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}";
         textBlockWeekday.Text = date.DayOfWeek.ToString();
 
         // it's for update time every second
-        var timer = new DispatcherTimer(); 
+        var timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromSeconds(1);
         timer.Tick += Timer_Tick;
         timer.Start();

@@ -34,8 +34,7 @@ namespace Fight_Club
 
         void setTopPanelImage()
         {
-            string read = File.ReadAllText(path);
-            var json = JsonConvert.DeserializeObject<List<User>>(read);
+            var json = GeneralOptions.GetUsers();
 
             foreach(var item in json)
             {
@@ -55,8 +54,7 @@ namespace Fight_Club
 
         private List<User> LoadToGrid(string path)
         {
-            var read = File.ReadAllText(path);
-            var list = JsonConvert.DeserializeObject<List<User>>(read);
+            var list = GeneralOptions.GetUsers();
             foreach(var item in list)
             { 
                 int length = item.Password.Length;
@@ -102,16 +100,6 @@ namespace Fight_Club
             setDefaultProfile();
         }
 
-        private void ExitButton_Click(object sender, RoutedEventArgs e) => this.Close();
-
-        private void ExitButton_MouseEnter(object sender, MouseEventArgs e) => ExitButton.Content = "\u2716";
-
-        private void ExitButton_MouseLeave(object sender, MouseEventArgs e) => ExitButton.Content = "⨉";
-
-
-        private void EnlargeButton_MouseEnter(object sender, MouseEventArgs e) => EnlargeButton.Content = "\u25A0";
-        private void EnlargeButton_MouseLeave(object sender, MouseEventArgs e) => EnlargeButton.Content = "◻";
-
         private void EnlargeButton_Click(object sender, RoutedEventArgs e)
         {
             if(!isMaximized)
@@ -128,6 +116,11 @@ namespace Fight_Club
             }
         }
 
+        private void ExitButton_Click(object sender, RoutedEventArgs e) => this.Close();
+        private void ExitButton_MouseEnter(object sender, MouseEventArgs e) => ExitButton.Content = "\u2716";
+        private void ExitButton_MouseLeave(object sender, MouseEventArgs e) => ExitButton.Content = "⨉";
+        private void EnlargeButton_MouseEnter(object sender, MouseEventArgs e) => EnlargeButton.Content = "\u25A0";
+        private void EnlargeButton_MouseLeave(object sender, MouseEventArgs e) => EnlargeButton.Content = "◻";
         private void RollUpButton_MouseEnter(object sender, MouseEventArgs e) => RollUpButton.Content = "\u2501";
 
         private void RollUpButton_MouseLeave(object sender, MouseEventArgs e) => RollUpButton.Content = "─";
