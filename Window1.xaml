@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fight_Club"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
@@ -372,7 +372,7 @@
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock Foreground="White" x:Name="textBlockChapterProfile" Visibility="hidden" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Text="Profile" Margin="10 0 10 0"/>
             </Grid>
-            <Grid Visibility="Hidden" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
+            <Grid Visibility="Visible" x:Name="borderProfile" Grid.Column="1" Grid.Row="2">
                 <Border Margin="20 20 0 20" Background="Transparent" CornerRadius="50">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -394,14 +394,14 @@
                                 <Border CornerRadius="20" Background="#8403fc">
                                     <Button Click="uploadPhoto_Click" Content="Upload a photo" Background="Transparent" BorderBrush="Transparent"/>
                                 </Border>
-                                <Border x:Name="borderUrlTextBox" Visibility="Visible" CornerRadius="20" Background="White" Margin="0 10 0 0">
+                                <Border x:Name="borderUrlTextBox" Visibility="Hidden" CornerRadius="20" Background="White" Margin="0 10 0 0">
                                     <TextBox x:Name="UrlTextBox" TextChanged="UrlTextBox_TextChanged" Margin="8 0 8 5"/>
                                 </Border>
                                 <Label x:Name="labelErrorUploadPhoto" Content="" Foreground="Red"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="25 0 -25 -30">
+                        <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="top" Margin="25 0 -25 -30">
                             <Grid Margin="0 30 0 30">
                                 <Border Background="#6400c2" CornerRadius="30" VerticalAlignment="Top" Margin="0 -10 65 0">
                                     <Grid>
@@ -410,6 +410,32 @@
                                     </Grid>
                                 </Border>
                                 <Label x:Name="labelErrorNickname" Content="" Margin="10 65 0 0" Foreground="Red"/>
+
+                                <Button x:Name="ChangePasswordButton" Click="ChangePasswordButton_Click" Content="Change Password" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 40 -70" Width="300">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="25" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                                <Button x:Name="LeaveButton" Click="LeaveButton_Click" Content="Leave the club" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 40 -130" Width="300">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="25" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                                
+                                <TextBlock x:Name="areYouSureText" Visibility="Hidden" Text="Are you sure?" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 200 -175" Foreground="White"/>
+                                <Button x:Name="YesButton" Visibility="Hidden" Click="LeaveTheClubButton_Click" Content="Yes" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 130 -180" Background="Green"/>
+                                <Button x:Name="NoButton" Click="NoButton_Click" Visibility="Hidden" Content="No" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 70 -180" Background="Red"/>
+
                             </Grid>
                         </Border>
 

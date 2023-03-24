@@ -25,7 +25,6 @@ public partial class Window1
     private string defaultImage = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png";
     private string path = "characters.txt";
 
-    private bool isCheckBoxPressed = false;
     private bool isUpploadPhotoPressed = false;
     void Button_MouseLeave_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = Brushes.White;
     void Button_MouseEnter_4(object sender, MouseEventArgs e) => textBlockProf.Foreground = buttonProfile.Background == Brushes.LightGreen ? Brushes.White : Brushes.LightGreen;
@@ -151,7 +150,7 @@ public partial class Window1
     {
         isUpploadPhotoPressed = isUpploadPhotoPressed == true ? false : true;
 
-        if (isUpploadPhotoPressed)
+        if (!isUpploadPhotoPressed)
             borderUrlTextBox.Visibility = Visibility.Hidden;
         else
             borderUrlTextBox.Visibility = Visibility.Visible;
@@ -185,5 +184,41 @@ public partial class Window1
             labelErrorNickname.Content = string.Empty;
             saveChanges.IsEnabled = true;
         }
+    }
+
+    private void LeaveTheClubButton_Click(object sender, RoutedEventArgs e)
+    {
+        string read = System.IO.File.ReadAllText("characters.txt");
+        var json = JsonConvert.DeserializeObject<List<User>>(read);
+        List<User> users = new List<User>();
+        foreach(var item in json)
+        {
+            if(item.Nickname != MainWindow.nowName)
+                users.Add(new User(item.Nickname, item.Password, item.Id, item.URL));
+        }
+
+        var jsonSer = JsonConvert.SerializeObject(users);
+        System.IO.File.WriteAllText("characters.txt", jsonSer);
+        this.Close();
+    }
+
+    private void LeaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        areYouSureText.Visibility = Visibility.Visible;
+        YesButton.Visibility = Visibility.Visible;
+        NoButton.Visibility = Visibility.Visible;
+    }
+
+    private void NoButton_Click(object sender, RoutedEventArgs e)
+    {
+        areYouSureText.Visibility = Visibility.Hidden;
+        YesButton.Visibility = Visibility.Hidden;
+        NoButton.Visibility = Visibility.Hidden;
+    }
+
+    private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+    {
+        Window3 window3 = new Window3();
+        window3.ShowDialog();
     }
 }

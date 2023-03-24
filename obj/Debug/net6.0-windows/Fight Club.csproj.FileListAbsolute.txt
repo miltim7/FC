@@ -36,3 +36,5 @@ C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.g.cs
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window1.baml
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window2.g.cs
 C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window2.baml
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window3.baml
+C:\Users\timur\source\repos\Fight Club\obj\Debug\net6.0-windows\Window3.g.cs
