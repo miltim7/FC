@@ -56,9 +56,9 @@ namespace Fight_Club
                         errorLabel2.Content = "number cant be < 0";
                         return;
                     }
-                    else if (num > count)
+                    else if (!IsSuchId(num))
                     {
-                        errorLabel2.Content = $"number cant be > {count}";
+                        errorLabel2.Content = $"such an ID does not exist";
                         return;
                     }
                     else
@@ -70,6 +70,20 @@ namespace Fight_Club
             }
         }
 
+        private bool IsSuchId(int id)
+        {
+            string read = File.ReadAllText("characters.txt");
+
+            var json = JsonConvert.DeserializeObject<List<User>>(read);
+
+            foreach(var item in json)
+            {
+                if (item.Id == id.ToString())
+                    return true;
+            }
+
+            return false;
+        }
         private int CountPart()
         {
             string read = File.ReadAllText("characters.txt");

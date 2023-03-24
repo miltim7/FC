@@ -132,6 +132,6 @@ namespace Fight_Club
 
         private void RollUpButton_MouseLeave(object sender, MouseEventArgs e) => RollUpButton.Content = "─";
 
-        private void RollUpButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+        private void RollUpButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;   
     }
 }

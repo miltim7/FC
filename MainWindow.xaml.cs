@@ -114,7 +114,18 @@ public partial class MainWindow : Window
 
         List<User> users = new List<User>();
         int countUser = CountUsers() + 1;
-        users.Add(new User(nicknameBox.Text, passwordBox.Password, countUser.ToString(), "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"));
+
+        var read = File.ReadAllText(path);
+        var res = JsonConvert.DeserializeObject<List<User>>(read);
+
+        int s = 0;
+        foreach(var item in res)
+        {
+            s = int.Parse(item.Id);
+        }
+        s++;
+
+        users.Add(new User(nicknameBox.Text, passwordBox.Password, s.ToString(), "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"));
         SafeUser(users);
 
         nowName = nicknameBox.Text;
